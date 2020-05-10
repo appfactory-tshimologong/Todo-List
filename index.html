@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./style.css">
+    <title>To Do List</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Barbara's To Do List</h1>
+    </header>
+
+    <div class="select">
+        <select name="todos" class="filter-todo">
+            <option value="all">All</option>
+            <option value="all">Completed</option>
+            <option value="all">Not Complete</option>
+        </select>
+    </div>
+
+    <form>
+        <input class="todo-input"  type="text" >
+        <button class="todo-button" type="submit">
+            <i class ="fas fa-plus-square"></i>
+        </button>
+    </form>
+
+     <div class="todo-container">
+        <ul class="todo-list">  
+        </ul>
+    </div>
+    
+    <script src="./app.js"></script>
+</body>
+</html>
