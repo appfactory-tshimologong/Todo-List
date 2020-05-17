@@ -25,34 +25,46 @@ function addToDo(event)
     //Create LI
 
     const newToDo = document.createElement('li');
+    
     newToDo.innerText=todoInput.value;
-    newToDo.classList.add('todo-item');
 
-    toDoDiv.appendChild(newToDo);
+    //Not accepting empty strings
 
-    //Add todo to LocalStorage
+    if(newToDo.innerText !== "")
+    {
+        newToDo.classList.add('todo-item');
 
-    saveLocalTodos(todoInput.value);
-
-    //Checkmark Button
-
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<i class="fas fa-check"></i>';
-    completedButton.classList.add("complete-btn");
-    toDoDiv.appendChild(completedButton);
-
-    //Trash button
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fas fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
-    toDoDiv.appendChild(trashButton);
-
-    //APPEND TO LIST
-    todoList.appendChild(toDoDiv);
-
-    //Clear Input value
-    todoInput.value = "";
-
+        toDoDiv.appendChild(newToDo);
+    
+        //Add todo to LocalStorage
+    
+        saveLocalTodos(todoInput.value);
+    
+        //Checkmark Button
+    
+        const completedButton = document.createElement('button');
+        completedButton.innerHTML = '<i class="fas fa-check"></i>';
+        completedButton.classList.add("complete-btn");
+        toDoDiv.appendChild(completedButton);
+    
+        //Trash button
+        const trashButton = document.createElement('button');
+        trashButton.innerHTML = '<i class="fas fa-trash"></i>';
+        trashButton.classList.add("trash-btn");
+        toDoDiv.appendChild(trashButton);
+    
+        //APPEND TO LIST
+        todoList.appendChild(toDoDiv);
+    
+        //Clear Input value
+        todoInput.value = "";
+    
+    }else
+    {
+        // Provide info for the user
+        alert("MA'AM BARBARA SAYS:\n\nYou have entered an invalid string, try again");
+    }
+    
 }
 
 function deleteCheck(e)
@@ -71,7 +83,7 @@ function deleteCheck(e)
         todo.addEventListener('transitionend', function(){
             todo.remove();
 
-        })
+        });
       
     }
 
@@ -83,7 +95,7 @@ function deleteCheck(e)
     }
 }
 
-function filterToDo()
+function filterToDo(e)
 {
         const todos = todoList.childNodes;
         
@@ -92,23 +104,28 @@ function filterToDo()
             switch(e.target.value)
             {
                 case "all":
-                    todo.style.display = "flex"
+                    todo.style.display = "flex";
+                    break;
                 case "completed":
                     if(todo.classList.contains('completed'))
-                    {todo.style.display='flex'}
-                    else{
+                    {
+                        todo.style.display='flex';
+                    }else
+                    {
                         todo.style.display = "none";
                     }
                     break;
-                case "not completed":
+                case "notcompleted":
                     if(!todo.classList.contains('completed'))
-                    {todo.style.display='flex'}
-                    else{
+                    {
+                        todo.style.display='flex';
+                    }else
+                    {
                         todo.style.display = "none";
                     }
                     break;
             }
-        })
+        });
 }
 
 function saveLocalTodos(todo)
@@ -188,10 +205,9 @@ function removeLocalTodos(todo){
         todos = JSON.parse(localStorage.getItem('todos'));
     }
 
-    const todoIndex = todos.indexOf(todo.children[0].innerText);
-    todos.splice(todos(todoIndex),1);
-
+    const todoIndex = todo.children[0].innerText;
+    todos.splice(todos.indexOf(todoIndex),1);
     localStorage.setItem("todos",JSON.stringify(todos)); 
-
+   
 }
 
